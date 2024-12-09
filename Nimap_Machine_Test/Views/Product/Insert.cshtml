@@ -1,0 +1,28 @@
+﻿@model Nimap_Machine_Test.Models.Validation_Class.Product_valid_Class
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Insert</title>
+</head>
+<body>
+    <div>
+        <h2>Insert</h2>
+        @using (Html.BeginForm("Insert", "Product", FormMethod.Post))
+        {
+            <table>
+               
+                <tr><td>@Html.LabelFor(x => x.Product_Name)</td><td>@Html.EditorFor(x => x.Product_Name)</td><td>@Html.ValidationMessageFor(x => x.Product_Name)</td></tr>
+
+                <br />
+                <tr><td colspan="3"><input type="submit" value="Insert" /></td></tr>
+            </table>
+        }
+    </div>
+</body>
+</html>

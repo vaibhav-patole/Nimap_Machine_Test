@@ -1,0 +1,47 @@
+﻿﻿@model IPagedList<Nimap_Machine_Test.Models.sp_join_Result>
+@{
+    Layout = null;
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("IndexSearch", "Combine", FormMethod.Get))
+        {
+            @Html.Label("Enter category name to search") @Html.TextBox("txtSearch")
+            <input type="submit" value="Search" />
+        }
+    </div>
+    <div>
+        <table>
+            <tr><th>Product ID</th>&nbsp;&nbsp;<th>Product Name</th><th>Category ID</th><th>Category Name</th></tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayName(item.Product_id.ToString())</td>
+                    <td>@Html.DisplayName(item.Product_Name)</td>
+                    <td>@Html.DisplayName(item.Category_id.ToString())</td>
+                    <td>@Html.DisplayName(item.Category_Name)</td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+    @Html.PagedListPager(Model, i => Url.Action("Index", "Combine", new { i, txtSearch = Request.QueryString["txtSearch"] }))
+    <br />
+    <br />
+    @Html.ActionLink("Show Product", "Index", "Product")
+    <br />
+    @Html.ActionLink("Show Categories", "Index", "Category")
+</body>
+</html>

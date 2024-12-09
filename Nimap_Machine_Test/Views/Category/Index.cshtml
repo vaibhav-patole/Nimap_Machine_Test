@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Nimap_Machine_Test.Models.tblCategory>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Insert New Category", "Insert")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category_Name)
+        </th>
+
+        <th> </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category_Name)
+            </td>
+
+            <td>
+                @Html.ActionLink("Update", "Update", new { id = item.Category_id }) |
+                @Html.ActionLink("Search", "Search", new { id = item.Category_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Category_id }) |
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Show Pagination Result", "Index", "Combine")
+<br />
+
+@Html.ActionLink("Show Products", "Index", "Product")
+
+
