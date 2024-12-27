@@ -1,5 +1,6 @@
 ﻿using Nimap_Machine_Test.Models;
 using Nimap_Machine_Test.Models.Validation_Class;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,22 @@ namespace Nimap_Machine_Test.Controllers
         {
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult Index1(int? i)
+        {
+            var list = dbo.sp_join().ToList().ToPagedList(i ?? 1, 10);
+
+            return View(list);
+        }
+        [HttpGet]
+        public ActionResult IndexSearch1(string txtSearch, int? i)
+        {
+            //var list = dbo.sp_join().ToList().ToPagedList(i ?? 1, 5);          
+            var Tlist = dbo.sp_join().ToList();
+            var list = Tlist.Where(x => x.Category_Name.ToLower().Contains(txtSearch)).ToList().ToPagedList(i ?? 1, 10);
+            return View("Index1", list);
         }
     }
 }

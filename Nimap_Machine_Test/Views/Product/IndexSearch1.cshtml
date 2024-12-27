@@ -15,7 +15,7 @@
 </head>
 <body>
     <div>
-        @using (Html.BeginForm("IndexSearch", "Combine", FormMethod.Get))
+        @using (Html.BeginForm("IndexSearch1", "Product", FormMethod.Get))
         {
             @Html.Label("Enter category name to search") @Html.TextBox("txtSearch")
             <input type="submit" value="Search" />
@@ -37,7 +37,7 @@
         </table>
 
     </div>
-    @Html.PagedListPager(Model, i => Url.Action("Index", "Combine", new { i, txtSearch = Request.QueryString["txtSearch"] }))
+    @Html.PagedListPager(Model, i => Url.Action("Index1", "Product", new { i, txtSearch = Request.QueryString["txtSearch"] }))
     <br />
     <br />
     @Html.ActionLink("Show Product", "Index", "Product")
